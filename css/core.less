@@ -1,3 +1,9 @@
+@blue: #2a84b0;
+
+html, body {
+	font-family: 'Open Sans', sans-serif;
+}
+
 html {
 	position: relative;
 	min-height: 100%;
@@ -7,9 +13,6 @@ body {
 	margin-bottom: 50px;
 }
 
-//html, body, .container-fluid, .row {
-//	height: 100%;
-//}
 
 .footer {
 	position: absolute;
@@ -22,6 +25,10 @@ body {
 	border: 0px;
 	.navbar {
 		border: 0px;
+		background-color: #cccccc;
+		a {
+			color: #000000;
+		}
 	}
 
 }
@@ -35,9 +42,16 @@ body {
 }
 
 .dashboard {
+	height: 100%;
 	.sidebar {
+		.btn-new-dashboard {
+			margin: 10px;
+		}
+
 		background-color: #f2f2f2;
-		//height: 100%;
+		height: 100%;
+		padding-left: 0;
+		padding-right: 0;
 	}
 
 	.showcase {
@@ -84,5 +98,61 @@ body {
 
 .btn-support:before {
 	background-image: url('/img/icon_support.svg');
+}
 
+
+.navbar-default {
+	background-color: #f2f2f2;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+	color: @blue;
+	background-color: #f2f2f2;
+}
+
+.btn-default {
+	padding: 10px;
+	text-transform: uppercase;
+	color: #FFFFFF;
+	background-color: #333333;
+	border: none;
+	border-radius: 0;
+}
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active,
+.open > .dropdown-toggle.btn-default {
+	color: #f2f2f2;
+	background-color: #333333;
+	border: none;
+}
+
+.dashboard-list {
+	margin-bottom: 20px;
+
+	label {
+		text-transform: uppercase;
+		font-weight: bold;
+		margin: 0 5px;
+		padding: 5px;
+		color: #000000;
+		border-bottom: 1px solid #333333;
+		display: block;
+	}
+
+	ul {
+		padding-left: 0;
+		list-style: none;
+		li {
+			padding: 12px 10px;
+
+			&.active {
+				color: @blue;
+				background-color: #ffffff;
+			}
+		}
+	}
 }

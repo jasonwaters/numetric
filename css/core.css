@@ -1,3 +1,7 @@
+html,
+body {
+  font-family: 'Open Sans', sans-serif;
+}
 html {
   position: relative;
   min-height: 100%;
@@ -20,6 +24,10 @@ body {
 }
 .footer .navbar {
   border: 0px;
+  background-color: #cccccc;
+}
+.footer .navbar a {
+  color: #000000;
 }
 .navbar {
   margin-bottom: 0;
@@ -27,8 +35,17 @@ body {
 .container {
   height: 100%;
 }
+.dashboard {
+  height: 100%;
+}
 .dashboard .sidebar {
   background-color: #f2f2f2;
+  height: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+.dashboard .sidebar .btn-new-dashboard {
+  margin: 10px;
 }
 .dashboard .showcase {
   background-color: #FFFFFF;
@@ -63,4 +80,53 @@ body {
 }
 .btn-support:before {
   background-image: url('/img/icon_support.svg');
+}
+.navbar-default {
+  background-color: #f2f2f2;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #2a84b0;
+  background-color: #f2f2f2;
+}
+.btn-default {
+  padding: 10px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  background-color: #333333;
+  border: none;
+  border-radius: 0;
+}
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active,
+.open > .dropdown-toggle.btn-default {
+  color: #f2f2f2;
+  background-color: #333333;
+  border: none;
+}
+.dashboard-list {
+  margin-bottom: 20px;
+}
+.dashboard-list label {
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 0 5px;
+  padding: 5px;
+  color: #000000;
+  border-bottom: 1px solid #333333;
+  display: block;
+}
+.dashboard-list ul {
+  padding-left: 0;
+  list-style: none;
+}
+.dashboard-list ul li {
+  padding: 12px 10px;
+}
+.dashboard-list ul li.active {
+  color: #2a84b0;
+  background-color: #ffffff;
 }

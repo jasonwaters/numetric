@@ -4,6 +4,7 @@
 		<meta charset="UTF-8">
 		<title>numetric</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="/libs/bootstrap/dist/css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="/libs/c3/c3.css">
 		<link rel="stylesheet" type="text/css" href="/css/core.css">
@@ -11,7 +12,7 @@
 	<body>
 		<!-- Static navbar -->
 		<div class="navbar navbar-default navbar-static-top nm-primary-nav" role="navigation">
-			<div class="container">
+			<div class="container-fluid">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
 						<span class="sr-only">Toggle navigation</span>
@@ -43,10 +44,36 @@
 
 		<div class="container-fluid dashboard">
 			<div class="row">
-				<div class="col-sm-1 sidebar">
-					sidebar
+				<div class="col-sm-2 sidebar">
+					<button class="btn btn-default btn-new-dashboard">+ New Dashboard</button>
+					<section class="dashboard-list favorites">
+						<label>Favorites</label>
+						<ul>
+							<li>Light Condition</li>
+							<li>Pavement Condition</li>
+							<li>Sign Condition</li>
+						</ul>
+					</section>
+
+					<section class="dashboard-list">
+						<label>Dashboards</label>
+						<ul>
+							<li>Accident Stats</li>
+							<li>Asphalt</li>
+							<li>CDL Traffic</li>
+							<li>Intersections</li>
+							<li>Light Condition</li>
+							<li>North-Facing Signs</li>
+							<li class="active">Pavement Condition</li>
+							<li>Quick Budget</li>
+							<li>Sign Condition</li>
+							<li>Traffic Flows</li>
+							<li>West-Facing Signs</li>
+						</ul>
+					</section>
+
 				</div>
-				<div class="col-sm-7 showcase">
+				<div class="col-sm-6 showcase">
 					showcase
 				</div>
 				<div class="col-sm-4 bonus" >
@@ -55,10 +82,10 @@
 			</div>
 		</div> <!-- /container -->
 
-		<div class="navbar navbar-default footer">
-			<div class="container">
+		<div class="navbar footer">
+			<div class="container-fluid">
 				<div class="navbar">
-					<ul class="nav navbar-nav">
+					<ul class="nav navbar-nav navbar-left">
 						<li><a href="#" class="icon-button btn-prefs">Preferences</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
