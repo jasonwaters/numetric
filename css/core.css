@@ -60,11 +60,38 @@ body,
 .dashboard .sidebar .btn-new-dashboard {
   margin: 10px;
 }
-.dashboard .showcase {
-  background-color: pink;
-}
+.dashboard .showcase,
 .dashboard .bonus {
-  background-color: orange;
+  background-color: #FFFFFF;
+  padding: 15px;
+}
+.dashboard .map {
+  background-color: #f2f2f2;
+  border: 1px solid #404040;
+  min-height: 600px;
+  padding: 15px;
+}
+.dashboard .under-map {
+  background-color: #f2f2f2;
+  border: 1px solid #404040;
+  border-top: none;
+  min-height: 300px;
+  margin-left: 0;
+  margin-right: 0;
+}
+.dashboard .under-map .pod {
+  min-height: 300px;
+  padding: 15px;
+}
+.dashboard .under-map .pod:first-child {
+  border-right: 1px solid #aeaeae;
+}
+.dashboard .chart {
+  border: 1px solid #404040;
+  padding: 15px;
+  background-color: #FFFFFF;
+  min-height: 287px;
+  margin-bottom: 20px;
 }
 .nm-primary-nav {
   border-color: #FFFFFF;

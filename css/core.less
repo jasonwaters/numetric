@@ -68,12 +68,40 @@ html, body, .dashboard {
 		padding-right: 0;
 	}
 
-	.showcase {
-		background-color: pink;
+	.showcase, .bonus {
+		background-color: #FFFFFF;
+		padding: 15px;
 	}
 
-	.bonus {
-		background-color: orange;
+	.map {
+		background-color: #f2f2f2;
+		border: 1px solid #404040;
+		min-height: 600px;
+		padding: 15px;
+	}
+
+	.under-map {
+		background-color: #f2f2f2;
+		border: 1px solid #404040;
+		border-top: none;
+		min-height: 300px;
+		margin-left: 0;
+		margin-right: 0;
+		.pod {
+			min-height: 300px;
+			padding: 15px;
+			&:first-child {
+				border-right: 1px solid #aeaeae;
+			}
+		}
+	}
+
+	.chart {
+		border: 1px solid #404040;
+		padding: 15px;
+		background-color: #FFFFFF;
+		min-height: 287px;
+		margin-bottom: 20px;
 	}
 }
 
