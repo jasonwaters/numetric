@@ -96,13 +96,29 @@ html, body, .dashboard {
 		}
 	}
 
-	.chart {
-		border: 1px solid #404040;
-		padding: 15px;
-		background-color: #FFFFFF;
-		min-height: 287px;
-		margin-bottom: 20px;
+	.bonus {
+		section {
+			border: 1px solid #404040;
+			padding: 15px;
+			background-color: #FFFFFF;
+			min-height: 287px;
+			max-height: 287px;
+			overflow: hidden;
+			margin-bottom: 20px;
+
+			label {
+				font-weight: normal;
+				font-size: 1.2em;
+				padding-bottom: 5px;
+			}
+		}
+
+		.treatment-list {
+			max-height: 220px;
+			overflow-y: scroll;
+		}
 	}
+
 }
 
 .nm-primary-nav {
