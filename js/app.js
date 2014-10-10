@@ -12,8 +12,15 @@
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
 
-	var app = angular.module('numetric', []);
+	var app = angular.module('numetric', ['google-maps'.ns()]);
 
+	app.config(['GoogleMapApiProvider'.ns(), function (GoogleMapApi) {
+		GoogleMapApi.configure({
+			key: 'AIzaSyALf5-sdlvQTvrN827e_FPKrV66JkKV5tY',
+			v: '3.17',
+			libraries: 'weather,geometry,visualization'
+		});
+	}]);
 
 	app.filter('bigmoney', function() {
 		return function(value) {
@@ -21,7 +28,20 @@
 		};
 	});
 
-	app.controller('numetric-main', ['$scope', function ($scope) {
+	app.controller('numetric-main', ['$scope', 'GoogleMapApi'.ns(), function ($scope, GoogleMapApi) {
+		$scope.map = {
+			center: {
+				latitude: 40.442603,
+				longitude: -111.909485
+			},
+			zoom: 10
+		};
+
+		GoogleMapApi.then(function(maps) {
+			console.log('maps ready');
+		});
+
+
 		$scope.chart = null;
 		$scope.treatments = [
 			newTreatment(new Date(2010, 0,1), "Chip Seal", getRandomInt(1000000, 10000000)),
