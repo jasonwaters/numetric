@@ -73,16 +73,28 @@
 					</section>
 
 				</div>
-				<div class="col-sm-6 showcase table-cell">
+				<div class="col-sm-7 showcase table-cell">
 					<div class="map">
 						<ui-gmap-google-map center="map.center" zoom="map.zoom"></ui-gmap-google-map>
 					</div>
 					<div class="row under-map">
-						<div class="col-sm-6 pod">Specs</div>
-						<div class="col-sm-6 pod">AADT</div>
+						<section class="col-sm-6 specs">
+							<label>Specs</label>
+							<ul class="list-unstyled">
+								<li>Route: 0015N</li>
+								<li>Milepost: 150-155</li>
+								<li>Pavement Type: Concrete</li>
+								<li>Class: Interstate</li>
+								<li>Current Condition: 90</li>
+							</ul>
+						</section>
+						<section class="col-sm-6">
+							<label>AADT</label>
+							<div id="chart-AADT-line" class="chart"></div>
+						</section>
 					</div>
 				</div>
-				<div class="col-sm-5 bonus table-cell">
+				<div class="col-sm-4 bonus table-cell">
 					<section>
 						<label>Average Condition History</label>
 						<div id="chart-average-condition-line" class="chart"></div>

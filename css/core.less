@@ -7,7 +7,9 @@ html, body, .dashboard {
 	height: 100%;
 }
 
-
+.logo {
+	margin-top: -10px;
+}
 
 .footer {
 	position: absolute;
@@ -71,29 +73,43 @@ html, body, .dashboard {
 	.showcase, .bonus {
 		background-color: #FFFFFF;
 		padding: 15px;
+		section {
+			padding: 15px;
+			min-height: 287px;
+			max-height: 287px;
+			label {
+				font-weight: normal;
+				font-size: 1.2em;
+				padding-bottom: 5px;
+			}
+		}
 	}
 
 	.map {
 		background-color: #f2f2f2;
 		border: 1px solid #404040;
-		min-height: 600px;
+		min-height: 613px;
+		max-height: 613px;
+		overflow: hidden;
 		padding: 0;
 	}
 
-	.angular-google-map-container { height: 595px; }
+	.angular-google-map-container { height: 613px; }
 
 	.under-map {
 		background-color: #f2f2f2;
 		border: 1px solid #404040;
 		border-top: none;
-		min-height: 300px;
+		min-height: 287px;
 		margin-left: 0;
 		margin-right: 0;
-		.pod {
-			min-height: 300px;
-			padding: 15px;
+		section {
 			&:first-child {
 				border-right: 1px solid #aeaeae;
+			}
+			&.specs li {
+				font-size: 1.1em;
+				line-height: 2.3em;
 			}
 		}
 	}
@@ -101,18 +117,9 @@ html, body, .dashboard {
 	.bonus {
 		section {
 			border: 1px solid #404040;
-			padding: 15px;
 			background-color: #FFFFFF;
-			min-height: 287px;
-			max-height: 287px;
 			overflow: hidden;
 			margin-bottom: 20px;
-
-			label {
-				font-weight: normal;
-				font-size: 1.2em;
-				padding-bottom: 5px;
-			}
 		}
 
 		.treatment-list {

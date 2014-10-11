@@ -38,11 +38,9 @@
 		};
 
 		GoogleMapApi.then(function(maps) {
-			console.log('maps ready');
 		});
 
-
-		$scope.chart = null;
+		$scope.charts = {};
 		$scope.treatments = [
 			newTreatment(new Date(2010, 0,1), "Chip Seal", getRandomInt(1000000, 10000000)),
 			newTreatment(new Date(2011, 1,2), "Chip Seal", getRandomInt(1000000, 10000000)),
@@ -55,64 +53,115 @@
 		];
 
 
-		function renderLineChart() {
-			$scope.chart1 = c3.generate({
+		function renderAverageConditionLineChart() {
+			$scope.charts['averageConditionLine'] = c3.generate({
 				bindto: '#chart-average-condition-line',
 				size: {
 					height: 230
 				},
 				data: {
 					x: 'x',
-//        			xFormat: '%Y%m%d', // 'xFormat' can be used as custom format of 'x'
 					columns: [
-						['x', '2013-01-01', '2013-01-02', '2013-01-03', '2013-01-04', '2013-01-05', '2013-01-06'],
-//			            ['x', '20130101', '20130102', '20130103', '20130104', '20130105', '20130106'],
-						['data1', 30, 200, 100, 400, 150, 250],
-						['data2', 130, 340, 200, 500, 250, 350]
-					]
+						['x', '2007-01-01', '2008-01-01', '2009-01-01', '2010-01-01', '2011-01-01', '2012-01-01', '2013-01-01'],
+						['Condition', 60, 67, 88, 38, 64, 55, 41]
+					],
+					type: 'area'
+				},
+				color: {
+					pattern: ['#8f8f8f', '#f2f2f2']
 				},
 				axis: {
 					x: {
 						type: 'timeseries',
 						tick: {
-							format: '%Y-%m-%d'
+							format: '%Y'
 						}
 					}
+				},
+				legend: {
+					show: false
 				}
 			});
 		};
 
-		function renderBarChart() {
-			$scope.chart2 = c3.generate({
+		function renderAverageConditionBarChart() {
+			$scope.charts['averageConditionBar'] = c3.generate({
 				bindto: '#chart-average-condition-bar',
 				size: {
 					height: 230
 				},
 				data: {
+					x : 'x',
 					columns: [
-						['data1', 30, 200, 100, 400, 150, 250],
-						['data2', 130, 100, 140, 200, 150, 50]
+						['x', '2007-01-01', '2008-01-01', '2009-01-01', '2010-01-01', '2011-01-01', '2012-01-01', '2013-01-01'],
+						['Condition', 60, 67, 88, 38, 64, 55, 41]
 					],
 					type: 'bar'
+				},
+				groups: [
+					['Condition']
+				],
+				color: {
+					pattern: ['#666666', '#f2f2f2']
 				},
 				bar: {
 					width: {
 						ratio: 0.5 // this makes bar width 50% of length between ticks
 					}
-					// or
-					//width: 100 // this makes bar width 100px
+				},
+				axis: {
+					x: {
+						type: 'timeseries',
+						tick: {
+							format: '%Y'
+						}
+					}
+				},
+				legend: {
+					show: false
 				}
 			});
-		}
+		};
 
+		function renderAADTLineChart() {
+			$scope.charts['AADT'] = c3.generate({
+				bindto: '#chart-AADT-line',
+				size: {
+					height: 230
+				},
+				data: {
+					x: 'x',
+					columns: [
+						['x', '2007-01-01', '2008-01-01', '2009-01-01', '2010-01-01', '2011-01-01', '2012-01-01', '2013-01-01'],
+						['Traffic', 40, 50, 55, 50, 47, 55, 48]
+					],
+					type: 'area'
+				},
+				color: {
+					pattern: ['#8f8f8f', '#f2f2f2']
+				},
+
+				axis: {
+					x: {
+						type: 'timeseries',
+						tick: {
+							format: '%Y'
+						}
+					}
+				},
+				legend: {
+					show: false
+				}
+			});
+		};
 
 
 		$scope.initialize = function() {
-			renderLineChart();
-			renderBarChart();
+			renderAverageConditionLineChart();
+			renderAverageConditionBarChart();
+			renderAADTLineChart();
 		};
 
-		$scope.blah = "blah";
 	}]);
 })();
 
