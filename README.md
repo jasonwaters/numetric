@@ -11,3 +11,4 @@
 * http://angular-ui.github.io/angular-google-maps/#!/
 * https://developers.google.com/maps/documentation/javascript/shapes#draggable
 * http://stackoverflow.com/questions/6795414/creating-a-selectable-clickable-overlay-on-google-maps
+* http://www.birdtheme.org/useful/v3largemap.html
