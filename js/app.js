@@ -59,8 +59,19 @@
 				latitude: 40.6357,
 				longitude: -111.9047
 			},
-			zoom: 16
+			zoom: 16,
+			options: {
+				panControl: false,
+				streetViewControl: false,
+				zoomControl: false
+			}
 		};
+
+
+		GoogleMapApi.then(function(maps) {
+			$scope.map.options.mapTypeId = maps.MapTypeId.HYBRID;
+		});
+
 
 		$scope.selected = null;
 		$scope.charts = {};
