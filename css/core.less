@@ -1,10 +1,27 @@
-@blue: #2a84b0;
+@blue: #297daa;
 
 html, body, .dashboard {
 	font-family: 'Open Sans', sans-serif;
 	padding: 0;
 	margin: 0;
 	height: 100%;
+}
+
+a {
+	color: @blue;
+	text-decoration: none;
+}
+
+a:hover,
+a:focus {
+	color: @blue;
+	text-decoration: underline;
+}
+
+a:focus {
+	outline: thin dotted;
+	outline: 5px auto -webkit-focus-ring-color;
+	outline-offset: -2px;
 }
 
 .logo {
@@ -18,13 +35,16 @@ html, body, .dashboard {
 	/* Set the fixed height of the footer here */
 	height: 50px;
 	color: #4d4d4d;
-	background-color: #cccccc;
+	background-color: #333333;
 	border: 0px;
 	.navbar {
 		border: 0px;
-		background-color: #cccccc;
+		background-color: #333333;
 		a {
-			color: #000000;
+			color: @blue;
+			&:hover, &:focus {
+				background-color: #333333;
+			}
 		}
 	}
 
@@ -65,13 +85,13 @@ html, body, .dashboard {
 			margin: 10px;
 		}
 
-		background-color: #f2f2f2;
+		background-color: #f4f0ec;
 		padding-left: 0;
 		padding-right: 0;
 	}
 
 	.showcase, .bonus {
-		background-color: #FFFFFF;
+		background-color: #faf9f8;
 		padding: 15px;
 		section {
 			padding: 15px;
@@ -81,13 +101,14 @@ html, body, .dashboard {
 				font-weight: normal;
 				font-size: 1.2em;
 				padding-bottom: 5px;
+				color: #3c3c3c;
 			}
 		}
 	}
 
 	.map {
-		background-color: #f2f2f2;
-		border: 1px solid #404040;
+		border: none;
+		border-right: 1px solid #ececec;
 		min-height: 613px;
 		max-height: 613px;
 		overflow: hidden;
@@ -97,26 +118,31 @@ html, body, .dashboard {
 	.angular-google-map-container { height: 613px; }
 
 	.under-map {
-		background-color: #f2f2f2;
-		border: 1px solid #404040;
+		background-color: #FFFFFF;
 		border-top: none;
+		border: none;
+		border-bottom: 1px solid #ececec;
+		border-right: 1px solid #ececec;
 		min-height: 287px;
 		margin-left: 0;
 		margin-right: 0;
 		section {
-			&:first-child {
-				border-right: 1px solid #aeaeae;
-			}
 			&.specs li {
 				font-size: 1.1em;
-				line-height: 2.3em;
+				line-height: 2.6em;
+				border-top: 2px dotted #c3c3c3;
+				span {
+					font-weight: bold;
+				}
 			}
 		}
 	}
 
 	.bonus {
 		section {
-			border: 1px solid #404040;
+			border: none;
+			border-bottom: 1px solid #ececec;
+			border-right: 1px solid #ececec;
 			background-color: #FFFFFF;
 			overflow: hidden;
 			margin-bottom: 20px;
@@ -130,22 +156,31 @@ html, body, .dashboard {
 
 	.table-treatments {
 		& > tbody {
-			background-color: #f2f2f2;
+			background-color: #ffffff;
 		}
 
 		& > tbody > tr:nth-child(odd) > td,
 		& > tbody > tr:nth-child(odd) > th {
-			background-color: #e6e6e6;
+			background-color: #f2f2f2;
 		}
 
 		thead th {
 			background-color: #666666;
 			color: #FFFFFF;
 			font-weight: normal;
-			border: 1px solid #4c4c4c;
+			border: none;
+			border-right: 1px solid #8d8d8d;
+			&:last-child {
+				border-right: none;
+			}
 		}
 		td {
-			border: 1px solid #4c4c4c;
+			border: none;
+			border-right: 1px solid #d3d3d3;
+			color: #636363;
+			&:last-child {
+				border-right: none;
+			}
 		}
 	}
 }
@@ -189,21 +224,27 @@ html, body, .dashboard {
 
 
 .navbar-default {
-	background-color: #f2f2f2;
+	background-color: #e8e3da;
 }
 
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
 	color: @blue;
-	background-color: #f2f2f2;
+	background-color: #e8e3da;
+}
+
+.navbar-default .navbar-nav > li > a {
+	text-transform: uppercase;
+	font-weight: bold;
+	color: black;
 }
 
 .btn-default {
 	padding: 10px;
 	text-transform: uppercase;
 	color: #FFFFFF;
-	background-color: #333333;
+	background-color: #b7ada4;
 	border: none;
 	border-radius: 0;
 }
@@ -238,7 +279,7 @@ html, body, .dashboard {
 
 			&.active {
 				color: @blue;
-				background-color: #ffffff;
+				background-color: #faf9f8;
 			}
 		}
 	}

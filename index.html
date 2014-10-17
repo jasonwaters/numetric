@@ -24,9 +24,8 @@
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Dashboard</a></li>
+						<li class="active"><a href="#">Dashboards</a></li>
 						<li><a href="#">Quick Query</a></li>
-						<li><a href="#">Messages (1)</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
@@ -50,7 +49,7 @@
 						<label>Favorites</label>
 						<ul>
 							<li>Light Condition</li>
-							<li>Pavement Condition</li>
+							<li class="active">Pavement Condition</li>
 							<li>Sign Condition</li>
 						</ul>
 					</section>
@@ -64,7 +63,7 @@
 							<li>Intersections</li>
 							<li>Light Condition</li>
 							<li>North-Facing Signs</li>
-							<li class="active">Pavement Condition</li>
+							<li>Pavement Condition</li>
 							<li>Quick Budget</li>
 							<li>Sign Condition</li>
 							<li>Traffic Flows</li>
@@ -83,11 +82,11 @@
 						<section class="col-sm-6 specs">
 							<label>Specs</label>
 							<ul class="list-unstyled">
-								<li>Route: 0015N</li>
-								<li>Milepost: 150-155</li>
-								<li>Pavement Type: Concrete</li>
-								<li>Class: Interstate</li>
-								<li>Current Condition: 90</li>
+								<li><span>Route:</span> 0015N</li>
+								<li><span>Milepost:</span> 150-155</li>
+								<li><span>Pavement Type:</span> Concrete</li>
+								<li><span>Class:</span> Interstate</li>
+								<li><span>Current Condition:</span> 90</li>
 							</ul>
 						</section>
 						<section class="col-sm-6">
@@ -98,17 +97,17 @@
 				</div>
 				<div class="col-sm-4 bonus table-cell">
 					<section>
-						<label>Average Condition History</label>
+						<label>Average Condition History (A)</label>
 						<div id="chart-average-condition-line" class="chart"></div>
 					</section>
 					<section class="chart">
-						<label>Average Condition History</label>
+						<label>Average Condition History (B)</label>
 						<div id="chart-average-condition-bar" class="chart"></div>
 					</section>
 					<section class="list">
 						<label>Treatment History</label>
 						<div class="treatment-list">
-							<table class="table table-striped table-bordered table-treatments" ng-cloak>
+							<table class="table table-striped table-treatments" ng-cloak>
 								<thead>
 									<tr>
 										<th>Date Completed</th>
@@ -119,7 +118,7 @@
 								<tbody>
 									<tr ng-repeat="treatment in treatments">
 										<td>{{treatment.dateCompleted|date}}</td>
-										<td>{{treatment.description}}</td>
+										<td><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">{{treatment.description}}</a></td>
 										<td>{{treatment.cost|bigmoney}}</td>
 									</tr>
 								</tbody>

@@ -1,6 +1,33 @@
 (function() {
 	"use strict";
 
+
+	var mapStyle = [
+		{
+			"stylers": [
+				{
+					"hue": "#dbeff3"
+				},
+				{
+					"saturation": 250
+				}
+			]
+		},
+		{
+			"featureType": "road",
+			"elementType": "geometry",
+			"stylers": [
+				{
+					"lightness": 100
+				},
+				{
+					"visibility": "simplified"
+				}
+			]
+		}
+	];
+
+
 	var app = angular.module('numetric', ['numetric.services', 'google-maps'.ns()]);
 
 	app.config(['GoogleMapApiProvider'.ns(), function (GoogleMapApi) {
@@ -64,12 +91,14 @@
 				panControl: false,
 				streetViewControl: false,
 				zoomControl: false
+				//styles: mapStyle
 			}
 		};
 
 
 		GoogleMapApi.then(function(maps) {
 			$scope.map.options.mapTypeId = maps.MapTypeId.HYBRID;
+			//$scope.map.options.mapTypeId = maps.MapTypeId.ROADMAP;
 		});
 
 
@@ -94,7 +123,7 @@
 					type: 'area'
 				},
 				color: {
-					pattern: ['#8f8f8f', '#f2f2f2']
+					pattern: ['#1daed7']
 				},
 				axis: {
 					x: {
@@ -128,7 +157,7 @@
 					['Condition']
 				],
 				color: {
-					pattern: ['#666666', '#f2f2f2']
+					pattern: ['#43c1df', '#8e837e']
 				},
 				bar: {
 					width: {
@@ -141,6 +170,11 @@
 						tick: {
 							format: '%Y'
 						}
+					}
+				},
+				grid: {
+					focus: {
+						show: false
 					}
 				},
 				legend: {
@@ -164,7 +198,7 @@
 					type: 'area'
 				},
 				color: {
-					pattern: ['#8f8f8f', '#f2f2f2']
+					pattern: ['#1daed7']
 				},
 
 				axis: {
@@ -172,6 +206,13 @@
 						type: 'timeseries',
 						tick: {
 							format: '%Y'
+						}
+					},
+					y: {
+						tick: {
+							format: function(y) {
+								return numeral(y).format('0a');
+							}
 						}
 					}
 				},
