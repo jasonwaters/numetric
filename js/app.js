@@ -105,7 +105,7 @@
 			_.forEach($scope.treatments, function(treatment) {
 				treatmentLines.push({
 					'value': moment(treatment.dateCompleted).format('YYYY-MM-DD'),
-					'text': treatment.id
+					'text': treatment.description + "  (" + treatment.id + ")"
 				});
 			});
 
