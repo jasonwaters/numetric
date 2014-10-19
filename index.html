@@ -79,18 +79,18 @@
 						</ui-gmap-google-map>
 						<div class="info-overlay">
 							<div>
-								<span>Route: 0015N</span><span>Milepost: {{selected.id}}</span></div>
+								<span>Route: {{selected.specs.route}}</span><span>Milepost: {{selected.specs.milepost}}</span></div>
 						</div>
 					</div>
 					<div class="row under-map">
 						<section class="col-sm-6 specs">
 							<label>Specs</label>
 							<ul class="list-unstyled">
-								<li><span>Route:</span> 0015N</li>
-								<li><span>Milepost:</span> 150-155</li>
-								<li><span>Pavement Type:</span> Concrete</li>
-								<li><span>Class:</span> Interstate</li>
-								<li><span>Current Condition:</span> 90</li>
+								<li><span>Route:</span> {{selected.specs.route}}</li>
+								<li><span>Milepost:</span> {{selected.specs.milepost}}</li>
+								<li><span>Pavement Type:</span> {{selected.specs.type}}</li>
+								<li><span>Class:</span> {{selected.specs.type}}</li>
+								<li><span>Current Condition:</span> {{averageCondition.values|lastItem}}</li>
 							</ul>
 						</section>
 						<section class="col-sm-6">
@@ -160,6 +160,7 @@
 		<script src="/libs/numeral/min/numeral.min.js"></script>
 		<script src="/libs/moment/min/moment.min.js"></script>
 		<script src="/js/services.js"></script>
+		<script src="/js/filters.js"></script>
 		<script src="/js/app.js"></script>
 	</body>
 </html>

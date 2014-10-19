@@ -1,7 +1,6 @@
 (function() {
 	"use strict";
 
-
 	var mapStyle = [
 		{
 			"stylers": [
@@ -28,7 +27,7 @@
 	];
 
 
-	var app = angular.module('numetric', ['numetric.services', 'google-maps'.ns()]);
+	var app = angular.module('numetric', ['numetric.services', 'numetric.filters', 'google-maps'.ns()]);
 
 	app.config(['GoogleMapApiProvider'.ns(), function (GoogleMapApi) {
 		GoogleMapApi.configure({
@@ -37,15 +36,6 @@
 			libraries: 'weather,geometry,visualization'
 		});
 	}]);
-
-	app.filter('bigmoney', function() {
-		return function(value) {
-			return numeral(value).format('($0.0 a)')
-		};
-	});
-
-
-
 
 	app.controller('numetric-main', ['$scope', 'GoogleMapApi'.ns(), 'pavement-service', function ($scope, GoogleMapApi, pavementService) {
 
