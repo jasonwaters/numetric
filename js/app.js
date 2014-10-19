@@ -99,6 +99,16 @@
 		setSelected($scope.polygons[0]);
 
 		function renderAverageConditionLineChart() {
+
+			var treatmentLines = [];
+
+			_.forEach($scope.treatments, function(treatment) {
+				treatmentLines.push({
+					'value': moment(treatment.dateCompleted).format('YYYY-MM-DD'),
+					'text': treatment.id
+				});
+			});
+
 			$scope.charts['averageConditionLine'] = c3.generate({
 				bindto: '#chart-average-condition-line',
 				size: {
@@ -125,11 +135,25 @@
 				},
 				legend: {
 					show: false
+				},
+				grid: {
+					x: {
+						lines: treatmentLines
+					}
 				}
 			});
 		};
 
 		function renderAverageConditionBarChart() {
+			var treatmentLines = [];
+
+			_.forEach($scope.treatments, function(treatment) {
+				treatmentLines.push({
+					'value': moment(treatment.dateCompleted).startOf('year').format('YYYY-MM-DD'),
+					'text': treatment.id
+				});
+			});
+
 			$scope.charts['averageConditionBar'] = c3.generate({
 				bindto: '#chart-average-condition-bar',
 				size: {
@@ -165,6 +189,9 @@
 				grid: {
 					focus: {
 						show: false
+					},
+					x: {
+						lines: treatmentLines
 					}
 				},
 				legend: {

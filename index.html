@@ -122,7 +122,7 @@
 								<tbody>
 									<tr ng-repeat="treatment in treatments">
 										<td>{{treatment.dateCompleted|date}}</td>
-										<td><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">{{treatment.description}}</a></td>
+										<td><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" title="{{treatment.id}}" alt="{{treatment.id}}">{{treatment.description}}</a></td>
 										<td>{{treatment.cost|bigmoney}}</td>
 									</tr>
 								</tbody>

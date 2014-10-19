@@ -15,7 +15,10 @@
 
 	var Generate = {
 		'treatment': function(dateCompleted, description, cost) {
+			var id = Math.floor((Math.random()* 900000) + 10000);
+
 			return  {
+				'id': id,
 				'dateCompleted': dateCompleted,
 				'description': description,
 				'cost': cost
