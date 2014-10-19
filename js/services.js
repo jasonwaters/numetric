@@ -50,6 +50,33 @@
 	app.factory('pavement-service', function() {
 		var service = {};
 
+		var treatments = {
+			1: [ // I-15 Left South section
+				Generate.treatment(new Date(2007, 5, 28), "Open Graded Surface Course", 12200000),
+				Generate.treatment(new Date(2010, 2, 31), "SMA", 7300000),
+				Generate.treatment(new Date(2012, 4, 21), "Microsurface", 6400000)
+			],
+			2: [ // I-15 Right South Section
+				Generate.treatment(new Date(2008, 3, 4), "Chip Seal", 2900000),
+				Generate.treatment(new Date(2009, 6, 11), "Microsurface", 5100000),
+				Generate.treatment(new Date(2010, 7, 8), "Bonded Wearing Course", 11300000),
+				Generate.treatment(new Date(2012, 2, 3), "SMA", 7900000)
+			],
+			3: [ //I-215 Section
+				Generate.treatment(new Date(2008, 5, 28), "Bonded Wearing Course", 12200000),
+				Generate.treatment(new Date(2011, 2, 31), "Chip Seal", 7300000),
+				Generate.treatment(new Date(2012, 4, 21), "Microsurface", 6400000)
+			],
+			4: [ //I-15 North Section
+				Generate.treatment(new Date(2007, 8, 15), "Bonded Wearing Course", 8800000),
+				Generate.treatment(new Date(2009, 9, 1), "SMA", 8100000),
+				Generate.treatment(new Date(2013, 6, 26), "Chip Seal", 5600000)
+			]
+		};
+
+
+
+
 		service.getSegments = function() {
 			return [
 				Generate.polygon(1, [
@@ -109,17 +136,7 @@
 		};
 
 		service.getTreatments = function(segmentID) {
-			return [
-				Generate.treatment(new Date(2006, 6, 11), "Microsurface", getRandomInt(1000000, 10000000)),
-				Generate.treatment(new Date(2007, 8, 15), "Bonded Wearing Course", getRandomInt(1000000, 10000000)),
-				Generate.treatment(new Date(2008, 3, 4), "Chip Seal", getRandomInt(1000000, 10000000)),
-				Generate.treatment(new Date(2009, 9, 1), "SMA", getRandomInt(1000000, 10000000)),
-				Generate.treatment(new Date(2010, 5, 28), "Open Graded Surface Course", getRandomInt(1000000, 10000000)),
-				Generate.treatment(new Date(2011, 2, 31), "SMA", getRandomInt(1000000, 10000000)),
-				Generate.treatment(new Date(2012, 4, 21), "Microsurface", getRandomInt(1000000, 10000000)),
-				Generate.treatment(new Date(2013, 6, 26), "Chip Seal", getRandomInt(1000000, 10000000)),
-				Generate.treatment(new Date(2014, 7, 8), "Bonded Wearing Course", getRandomInt(1000000, 10000000)),
-			];
+			return treatments[segmentID];
 		};
 
 		service.getAverageConditionHistory = function(segmentID) {

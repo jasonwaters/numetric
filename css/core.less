@@ -113,6 +113,25 @@ a:focus {
 		max-height: 613px;
 		overflow: hidden;
 		padding: 0;
+		position: relative;
+
+		.info-overlay {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			padding: 5px 10px;
+			/* Fallback for web browsers that doesn't support RGBa */
+			background: rgb(111, 116, 117);
+			/* RGBa with 0.6 opacity */
+			background: rgba(100, 100, 100, 0.7);
+			div {
+				color: white;
+				font-weight: 300;
+				span:first-child {
+					margin-right: 10px;
+				}
+			}
+		}
 	}
 
 	.angular-google-map-container { height: 613px; }
