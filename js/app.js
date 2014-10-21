@@ -104,8 +104,8 @@
 
 			_.forEach($scope.treatments, function(treatment) {
 				treatmentLines.push({
-					'value': moment(treatment.dateCompleted).format('YYYY-MM-DD'),
-					'text': treatment.description + "  (" + treatment.id + ")"
+					'value': moment(treatment.dateCompleted).startOf('year').format('YYYY-MM-DD'),
+					'text': treatment.id
 				});
 			});
 
