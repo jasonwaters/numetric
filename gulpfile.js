@@ -1,8 +1,9 @@
 var gulp = require('gulp'),
 	gutil = require('gulp-util'),
-	jshint = require('gulp-jshint')
+	jshint = require('gulp-jshint'),
 	less = require('gulp-less'),
-	minifyCSS = require('gulp-minify-css');;
+	browserSync = require('browser-sync'),
+	minifyCSS = require('gulp-minify-css');
 
 gulp.task('jslint', function() {
 	gulp.src('./js/*.js')
@@ -15,9 +16,17 @@ gulp.task('less', function () {
 	gulp.src('./css/**/*.less')
 		.pipe(less())
 		.pipe(minifyCSS())
-		.pipe(gulp.dest('./css'));
+		.pipe(gulp.dest('./css'))
+		.pipe(browserSync.reload({stream:true}));
 });
 
+gulp.task('browser-sync', function() {
+	browserSync({
+		server: {
+			baseDir: "./"
+		}
+	});
+});
 
 gulp.task('watch', function() {
 	gulp.watch('./css/**/*.less', function() {
@@ -30,3 +39,9 @@ gulp.task('watch', function() {
 });
 
 gulp.task('default', ['jslint', 'less']);
+
+gulp.task('serve', ['jslint', 'less', 'browser-sync'], function() {
+	gulp.watch('./css/**/*.less', function() {
+		gulp.run('less');
+	});
+});
