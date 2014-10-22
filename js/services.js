@@ -22,7 +22,7 @@
 				'dateCompleted': dateCompleted,
 				'description': description,
 				'cost': cost
-			}
+			};
 		},
 		'polygon': function(id, specs, path) {
 			return {
@@ -41,7 +41,7 @@
 				isSelected: function() {
 					return this.fill.color == NM.FILL_COLOR_SELECTED;
 				}
-			}
+			};
 		},
 		'specs': function(route, milepost, type, pClass) {
 			return {
@@ -56,7 +56,7 @@
 
 	function getRandomInt(min, max) {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
-	};
+	}
 
 	var app = angular.module('numetric.services', []);
 

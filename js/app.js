@@ -109,7 +109,7 @@
 				});
 			});
 
-			$scope.charts['averageConditionLine'] = c3.generate({
+			$scope.charts.averageConditionLine = c3.generate({
 				bindto: '#chart-average-condition-line',
 				size: {
 					height: 230
@@ -142,7 +142,7 @@
 					}
 				}
 			});
-		};
+		}
 
 		function renderAverageConditionBarChart() {
 			var treatmentLines = [];
@@ -154,7 +154,7 @@
 				});
 			});
 
-			$scope.charts['averageConditionBar'] = c3.generate({
+			$scope.charts.averageConditionBar = c3.generate({
 				bindto: '#chart-average-condition-bar',
 				size: {
 					height: 230
@@ -198,10 +198,10 @@
 					show: false
 				}
 			});
-		};
+		}
 
 		function renderAADTLineChart() {
-			$scope.charts['AADT'] = c3.generate({
+			$scope.charts.AADT = c3.generate({
 				bindto: '#chart-AADT-line',
 				size: {
 					height: 230
@@ -237,7 +237,7 @@
 					show: false
 				}
 			});
-		};
+		}
 	}]);
 })();
 
