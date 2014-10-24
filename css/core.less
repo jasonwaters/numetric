@@ -51,7 +51,7 @@ a:focus {
 		border: 0px;
 		background-color: #333333;
 		a {
-			color: @blue;
+			color: #d9d9d9;
 			&:hover, &:focus {
 				background-color: #333333;
 			}
@@ -248,8 +248,33 @@ a:focus {
 
 }
 
-.btn-support:before {
-	background-image: url('/img/robert-sweeney.jpg');
+.btn-support {
+	color: white;
+	min-width: 325px;
+
+	&:before {
+		height: 30px;
+		width: 30px;
+		margin: -5px 10px 0 0;
+		background-size: 30px 30px;
+
+		background-image: url('/img/robert-sweeney.jpg');
+	}
+
+	&:after {
+		display: block;
+		content: ' ';
+		position: relative;
+		left: 0px;
+		top: 0px;
+		float: right;
+		height: 40px;
+		width: 40px;
+		margin: -10px 0 0 0;
+		background-image: url('/img/icon_chat.svg');
+		background-size: 40px 40px;
+		background-position: top left;
+	}
 }
 
 
@@ -314,6 +339,14 @@ a:focus {
 		}
 	}
 }
+
+.nav-chat {
+	border-left: 1px solid #666666;
+	.blue {
+		color: @blue;
+	}
+}
+
 
 .c3-axis {
 	text {
