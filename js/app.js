@@ -27,7 +27,7 @@
 	];
 
 
-	var app = angular.module('numetric', ['numetric.services', 'numetric.filters', 'google-maps'.ns()]);
+	var app = angular.module('numetric', ['numetric.services', 'numetric.filters', 'numetric.directives', 'google-maps'.ns()]);
 
 	app.config(['GoogleMapApiProvider'.ns(), function (GoogleMapApi) {
 		GoogleMapApi.configure({

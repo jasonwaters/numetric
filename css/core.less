@@ -257,7 +257,6 @@ a:focus {
 		width: 30px;
 		margin: -5px 10px 0 0;
 		background-size: 30px 30px;
-
 		background-image: url('/img/robert-sweeney.jpg');
 	}
 
@@ -342,8 +341,111 @@ a:focus {
 
 .nav-chat {
 	border-left: 1px solid #666666;
-	.blue {
-		color: @blue;
+}
+
+.blue {
+	color: @blue;
+}
+
+.chat-box {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	min-width: 325px;
+	max-width: 325px;
+	height: 500px;
+
+	background-color: #f4f0ec;
+
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.7);
+	-moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.7);
+	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.7);
+
+	.title-bar {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		color: #cccccc;
+		padding: 10px;
+		height: 52px;
+		margin: 0;
+		background-color: #333333;
+
+		.chat-user-icon {
+			width: 30px;
+			height: 30px;
+			vertical-align: top;
+			margin-right: 5px;
+		}
+
+		.title-content {
+			display: inline-block;
+			font-size: .9em;
+			.dim {
+				color: #737373;
+			}
+		}
+
+		.icon-close-x {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			display: inline-block;
+			background-image: url('/img/icon_close_chat.svg');
+			background-size: 25px 25px;
+			width: 25px;
+			height: 25px;
+		}
+	}
+	.transcript {
+		position: absolute;
+		top: 52px;
+		bottom: 50px;
+		left: 0px;
+		right: 0px;
+		overflow-y: auto;
+
+		.chat-bubble {
+			border-radius: 2px;
+			padding: 10px;
+			margin: 10px;
+			font-size: .8em;
+			max-width: 250px;
+			clear: both;
+
+			&.them {
+				background-color: #e4ded6;
+				color: #4d4d4d;
+				float: right;
+			}
+
+
+			&.me {
+				background-color: #1daed7;
+				color: #effafd;
+				float: left;
+			}
+		}
+
+	}
+	.user-entry {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: white;
+		height: 50px;
+		input[type=text] {
+			width: 100%;
+			height: 100%;
+			border: none;
+			padding: 10px;
+			&:focus {
+				border: none;
+				outline: none;
+			}
+		}
 	}
 }
 

@@ -140,9 +140,31 @@
 						<li><a href="#" class="icon-button btn-prefs">Preferences</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right nav-chat">
-						<li><a href="#" class="icon-button btn-support">Talk to Robert <span class="blue">via Live Chat</span></a></li>
+						<li><a href ng-click="showChat=true" class="icon-button btn-support">Talk to Robert <span class="blue">via Live Chat</span></a></li>
 					</ul>
 				</div><!--/.nav-collapse -->
+			</div>
+		</div>
+
+		<div class="chat-box" ng-show="showChat">
+			<div class="title-bar">
+				<img src="/img/robert-sweeney.jpg" class="chat-user-icon"/>
+				<div class="title-content">
+					<div>Talk to Robert <span class="blue">via Live Chat</span></div>
+					<div class="dim">or call 1-888-888-8888</div>
+				</div>
+				<a href ng-click="showChat=false" class="icon-close-x"></a>
+			</div>
+			<div class="transcript">
+				<div class="chat-bubble me">Hi Robert, I have a question about my pavement dashboard.</div>
+				<div class="chat-bubble them">Hi John.  What can I help you with?</div>
+				<div class="chat-bubble me">I would like a new panel added that shows treatment history just for region 1.</div>
+				<div class="chat-bubble them">Sure thing.  This can be done in quick query.  Would you like me to walk you through it or just add it to your dashboard?</div>
+				<div class="chat-bubble me">Just adding it will be fine this time.  Thanks.</div>
+				<div class="chat-bubble them">My pleasure</div>
+			</div>
+			<div class="user-entry">
+				<input type="text" focus-me="{{showChat}}">
 			</div>
 		</div>
 
@@ -159,6 +181,7 @@
 		<script src="/libs/moment/min/moment.min.js"></script>
 		<script src="/js/services.js"></script>
 		<script src="/js/filters.js"></script>
+		<script src="/js/directives.js"></script>
 		<script src="/js/app.js"></script>
 	</body>
 </html>
