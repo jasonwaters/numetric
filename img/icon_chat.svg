@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="41px" height="24px" viewBox="0 0 41 24" enable-background="new 0 0 41 24" xml:space="preserve">
+<g id="icon_-_chat">
+	<path fill="#00ADD8" d="M40.889,15c0,1.65-1.35,3-3,3h-16c-1.65,0-3-1.35-3-3V3c0-1.65,1.35-3,3-3h16c1.65,0,3,1.35,3,3V15z"/>
+	<polygon fill="#00ADD8" points="18.889,24 18.889,12 24.889,18 	"/>
+	<path fill="#00ADD8" d="M0,15.833C0,17.025,0.975,18,2.167,18h11.556c1.192,0,2.167-0.975,2.167-2.167V7.167
+		C15.889,5.975,14.914,5,13.722,5H2.167C0.975,5,0,5.975,0,7.167V15.833z"/>
+	<polygon fill="#00ADD8" points="15.889,24 15.889,12 9.889,18 	"/>
+</g>
+</svg>
