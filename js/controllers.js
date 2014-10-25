@@ -50,17 +50,15 @@
 			}
 		};
 
-
 		GoogleMapApi.then(function(maps) {
 			$scope.map.options.mapTypeId = maps.MapTypeId.HYBRID;
-			//$scope.map.options.mapTypeId = maps.MapTypeId.ROADMAP;
 		});
-
 
 		$scope.selected = null;
 		$scope.charts = {};
 		$scope.treatments = [];
 		$scope.polygons = pavementService.getSegments();
+
 		setSelected($scope.polygons[0]);
 
 		function renderAverageConditionLineChart() {
@@ -205,8 +203,29 @@
 		}
 	}]);
 
-	app.controller('numetric-map', ['$scope', function($scope) {
-		$scope.name = "bobbo";
+	app.controller('numetric-map', ['$scope', 'GoogleMapApi'.ns(), function($scope, GoogleMapApi) {
+		$scope.showBarriers = true;
+		$scope.showSigns = true;
+		$scope.showMileposts = true;
+
+		$scope.map = {
+			center: {
+				latitude: 40.6357,
+				longitude: -111.9047
+			},
+			zoom: 14,
+			options: {
+				panControl: false,
+				streetViewControl: false,
+				zoomControl: false
+				//styles: mapStyle
+			}
+		};
+
+		GoogleMapApi.then(function(maps) {
+			$scope.map.options.mapTypeId = maps.MapTypeId.HYBRID;
+		});
+
 	}]);
 
 })();

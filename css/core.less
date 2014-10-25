@@ -10,11 +10,23 @@
 }
 
 
-html, body, .dashboard {
+html, body, .dashboard, .ng-container {
 	font-family: 'Open Sans', sans-serif;
 	padding: 0;
 	margin: 0;
 	height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: #333333;
+}
+
+.form-control {
+	border-radius: 0;
+
+	&::-webkit-input-placeholder, &:-moz-placeholder, &::-moz-placeholder, &:-ms-input-placeholder {
+		color: #b3b3b3;
+	}
 }
 
 a {
@@ -91,6 +103,15 @@ a:focus {
 		vertical-align: top;
 	}
 
+	header {
+		background-color: #f4f0ec;
+		padding: 15px;
+
+		h4 {
+			text-transform: uppercase;
+		}
+	}
+
 	.sidebar {
 		.btn-new-dashboard {
 			margin: 10px;
@@ -101,9 +122,16 @@ a:focus {
 		padding-right: 0;
 	}
 
+
+
 	.showcase, .bonus {
 		background-color: #faf9f8;
-		padding: 15px;
+		padding: 0;
+
+		.inner {
+			padding: 15px;
+		}
+
 		section {
 			padding: 15px;
 			min-height: 287px;
@@ -115,6 +143,11 @@ a:focus {
 				color: #3c3c3c;
 			}
 		}
+	}
+
+	.inner-inner {
+		padding: 15px;
+		background-color: #FFFFFF;
 	}
 
 	.map {
@@ -213,6 +246,15 @@ a:focus {
 			}
 		}
 	}
+}
+
+.map-view {
+	.map {
+		min-height: 800px;
+		max-height: 800px;
+	}
+
+	.angular-google-map-container { height: 800px; }
 }
 
 .nm-primary-nav {
@@ -314,6 +356,7 @@ a:focus {
 
 .dashboard-list {
 	margin-bottom: 20px;
+	min-width: 178px;
 
 	label {
 		text-transform: uppercase;

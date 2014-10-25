@@ -1,1 +1,27 @@
-<div>Hello {{name}}!</div>
+<div class="container-fluid dashboard map-view">
+	<div class="table-row row">
+		<div class="col-sm-1 sidebar table-cell">
+			<section class="dashboard-list favorites">
+				<label>Content</label>
+				<ul>
+					<li><input type="checkbox" ng-model="showBarriers"> Barriers</li>
+					<li><input type="checkbox" ng-model="showSigns"> Signs</li>
+					<li><input type="checkbox" ng-model="showMileposts"> Mileposts</li>
+				</ul>
+			</section>
+		</div>
+		<div class="col-sm-11 showcase table-cell">
+			<header>
+				<h4>Map</h4>
+				<input type="text" class="form-control" placeholder="FILTER results">
+			</header>
+			<div class="inner">
+				<div class="inner-inner">
+					<div class="map">
+						<ui-gmap-google-map center="map.center" zoom="map.zoom" options="map.options"></ui-gmap-google-map>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> <!-- /container -->
