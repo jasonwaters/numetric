@@ -353,7 +353,7 @@ a:focus {
 	right: 0;
 	min-width: 325px;
 	max-width: 325px;
-	height: 500px;
+	height: 560px;
 
 	background-color: #f4f0ec;
 
@@ -407,24 +407,50 @@ a:focus {
 		overflow-y: auto;
 
 		.chat-bubble {
-			border-radius: 2px;
+			position: relative;
+			border-radius: 3px;
 			padding: 10px;
 			margin: 10px;
-			font-size: .8em;
-			max-width: 250px;
+			font-size: .9em;
+			max-width: 260px;
 			clear: both;
 
 			&.them {
 				background-color: #e4ded6;
 				color: #4d4d4d;
 				float: right;
+				border-bottom-right-radius: 0;
+				&:after
+				{
+					content: ' ';
+					position: absolute;
+					width: 0;
+					height: 0;
+					right: 0px;
+					bottom: -6px;
+					border: 3px solid;
+					border-color: #e4ded6 #e4ded6 transparent transparent;
+				}
 			}
 
 
 			&.me {
+				border-bottom-left-radius: 0;
 				background-color: #1daed7;
 				color: #effafd;
 				float: left;
+
+				&:after
+				{
+					content: ' ';
+					position: absolute;
+					width: 0;
+					height: 0;
+					left: 0px;
+					bottom: -6px;
+					border: 3px solid;
+					border-color: #1daed7 transparent transparent #1daed7;
+				}
 			}
 		}
 
