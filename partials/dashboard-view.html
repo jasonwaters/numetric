@@ -1,0 +1,91 @@
+<div class="container-fluid dashboard">
+	<div class="table-row row">
+		<div class="col-sm-1 sidebar table-cell">
+			<button class="btn btn-default btn-new-dashboard">+ New Dashboard</button>
+			<section class="dashboard-list favorites">
+				<label>Favorites</label>
+				<ul>
+					<li>Light Condition</li>
+					<li class="active">Pavement Condition</li>
+					<li>Sign Condition</li>
+				</ul>
+			</section>
+
+			<section class="dashboard-list">
+				<label>Dashboards</label>
+				<ul>
+					<li>Accident Stats</li>
+					<li>Asphalt</li>
+					<li>CDL Traffic</li>
+					<li>Intersections</li>
+					<li>Light Condition</li>
+					<li>North-Facing Signs</li>
+					<li>Pavement Condition</li>
+					<li>Quick Budget</li>
+					<li>Sign Condition</li>
+					<li>Traffic Flows</li>
+					<li>West-Facing Signs</li>
+				</ul>
+			</section>
+
+		</div>
+		<div class="col-sm-7 showcase table-cell">
+			<div class="map">
+				<ui-gmap-google-map center="map.center" zoom="map.zoom" options="map.options">
+					<ui-gmap-polygon static="true" ng-repeat="p in polygons track by p.id" path="p.path" stroke="p.stroke" visible="p.visible" geodesic="false" fill="p.fill" fit="false" editable="false" draggable="false" clickable="true" events="polygonEvents"></ui-gmap-polygon>
+				</ui-gmap-google-map>
+				<div class="info-overlay">
+					<div>
+						<span>Route: {{selected.specs.route}}</span><span>Milepost: {{selected.specs.milepost}}</span></div>
+				</div>
+			</div>
+			<div class="row under-map">
+				<section class="col-sm-6 specs">
+					<label>Specs</label>
+					<ul class="list-unstyled">
+						<li><span>Route:</span> {{selected.specs.route}}</li>
+						<li><span>Milepost:</span> {{selected.specs.milepost}}</li>
+						<li><span>Pavement Type:</span> {{selected.specs.type}}</li>
+						<li><span>Class:</span> {{selected.specs.type}}</li>
+						<li><span>Current Condition:</span> {{averageCondition.values|lastItem}}</li>
+					</ul>
+				</section>
+				<section class="col-sm-6">
+					<label>AADT</label>
+					<div id="chart-AADT-line" class="chart"></div>
+				</section>
+			</div>
+		</div>
+		<div class="col-sm-4 bonus table-cell">
+			<section>
+				<label>Average Condition History (A)</label>
+				<div id="chart-average-condition-line" class="chart"></div>
+			</section>
+			<section class="chart">
+				<label>Average Condition History (B)</label>
+				<div id="chart-average-condition-bar" class="chart"></div>
+			</section>
+			<section class="list">
+				<label>Treatment History</label>
+				<div class="treatment-list">
+					<table class="table table-striped table-treatments">
+						<thead>
+						<tr>
+							<th>Date Completed</th>
+							<th>Treatment</th>
+							<th>Cost</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr ng-repeat="treatment in treatments">
+							<td>{{treatment.dateCompleted|date}}</td>
+							<td><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" title="{{treatment.id}}" alt="{{treatment.id}}">{{treatment.description}}</a></td>
+							<td>{{treatment.cost|bigmoney}}</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</section>
+		</div>
+	</div>
+</div> <!-- /container -->
