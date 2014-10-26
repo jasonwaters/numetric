@@ -50,6 +50,16 @@
 				'type': type,
 				'class': pClass
 			};
+		},
+		'marker': function(data) {
+			return {
+				id: data._id,
+				coords: {
+					latitude: data._source.Lat,
+					longitude: data._source.Long
+				},
+				raw: data
+			};
 		}
 
 	};
@@ -58,7 +68,48 @@
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
 
-	var app = angular.module('numetric.services', []);
+	var app = angular.module('numetric.services', ['elasticsearch']);
+
+	app.factory('search-service', function (esFactory, $q) {
+		var service = {};
+
+		var es = esFactory({
+			host: 'udot.teratek.co:9200',
+			log: 'trace'
+		});
+
+
+		service.getSigns = function() {
+			var deferred = $q.defer();
+
+			es.search({
+				index: 'udot',
+				size: 100,
+				body: {
+					"query":
+					{
+						"match": {
+							_type:"sign"
+						}
+					},
+					"filter": {}
+				}
+			}).then(function (response) {
+				var signs = [];
+
+				_.forEach(response.hits.hits, function(hit) {
+					signs.push(Generate.marker(hit));
+				});
+
+				deferred.resolve(signs);
+			});
+
+			return deferred.promise;
+		};
+
+		return service;
+	});
+
 
 	app.factory('pavement-service', function() {
 		var service = {};

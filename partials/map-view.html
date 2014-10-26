@@ -18,7 +18,9 @@
 			<div class="inner">
 				<div class="inner-inner">
 					<div class="map">
-						<ui-gmap-google-map center="map.center" zoom="map.zoom" options="map.options"></ui-gmap-google-map>
+						<ui-gmap-google-map center="map.center" zoom="map.zoom" options="map.options">
+							<ui-gmap-marker ng-repeat="s in signs track by s.id" coords="s.coords" options="signOptions" labelContent="'asdfsdf'" events="signEvents" idkey="s.id"></ui-gmap-marker>
+						</ui-gmap-google-map>
 					</div>
 				</div>
 			</div>

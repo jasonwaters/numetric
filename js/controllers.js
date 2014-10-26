@@ -203,17 +203,17 @@
 		}
 	}]);
 
-	app.controller('numetric-map', ['$scope', 'GoogleMapApi'.ns(), function($scope, GoogleMapApi) {
+	app.controller('numetric-map', ['$scope', 'GoogleMapApi'.ns(), 'search-service', function($scope, GoogleMapApi, searchService) {
 		$scope.showBarriers = true;
 		$scope.showSigns = true;
 		$scope.showMileposts = true;
 
 		$scope.map = {
 			center: {
-				latitude: 40.6357,
-				longitude: -111.9047
+				latitude: 39.63094,
+				longitude: -110.82715
 			},
-			zoom: 14,
+			zoom: 11,
 			options: {
 				panControl: false,
 				streetViewControl: false,
@@ -224,6 +224,17 @@
 
 		GoogleMapApi.then(function(maps) {
 			$scope.map.options.mapTypeId = maps.MapTypeId.HYBRID;
+		});
+
+
+		$scope.signs = [];
+		$scope.signOptions = {
+			icon: '/img/icon_signs.png'
+		};
+		$scope.signEvents = {};
+
+		searchService.getSigns().then(function(response) {
+			$scope.signs = response;
 		});
 
 	}]);
