@@ -228,10 +228,18 @@
 
 
 		$scope.signs = [];
-		$scope.signOptions = {
-			icon: '/img/icon_signs.png'
+		$scope.signOptions = {};
+		$scope.signEvents = {
+			clicked: function(marker, eventName, model, args) {
+			}
 		};
-		$scope.signEvents = {};
+
+		_.each($scope.signs, function(marker) {
+			marker.closeClick = function () {
+				marker.showWindow = false;
+				$scope.$apply();
+			};
+		});
 
 		searchService.getSigns().then(function(response) {
 			$scope.signs = response;

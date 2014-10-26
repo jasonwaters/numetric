@@ -19,7 +19,24 @@
 				<div class="inner-inner">
 					<div class="map">
 						<ui-gmap-google-map center="map.center" zoom="map.zoom" options="map.options">
-							<ui-gmap-marker ng-repeat="s in signs track by s.id" coords="s.coords" options="signOptions" labelContent="'asdfsdf'" events="signEvents" idkey="s.id"></ui-gmap-marker>
+							<ui-gmap-markers models="signs" coords="'coords'" icon="'icon'" click="signEvents.clicked">
+								<ui-gmap-windows show="'showWindow'" closeClick="'closeClick'" ng-cloak>
+									<div class="sign-info-popup" ng-non-bindable>
+										<ul class="list-unstyled">
+											<li>Mile Post: <span>{{raw.FromMilePost|number:1}}</span></li>
+											<li>Width: <span>{{raw.Width}}</span></li>
+											<li>Maintenance Station: <span>{{raw.Station}}</span></li>
+											<li>Sign Text: <span>{{raw.Legend}}</span></li>
+											<li>Route: <span>{{raw.Route}}</span></li>
+											<li>Facing Direction: <span>{{raw.SignOrientation}}</span></li>
+											<li>Side: <span>{{raw.Side}}</span></li>
+											<li>Condition: <span>{{raw.Condition}}</span></li>
+											<li>MUTCD Code: <span>{{raw.MUTCD}}</span></li>
+											<li>Region: <span>{{raw.Region}}</span></li>
+										</ul>
+									</div>
+								</ui-gmap-windows>
+							</ui-gmap-markers>
 						</ui-gmap-google-map>
 					</div>
 				</div>

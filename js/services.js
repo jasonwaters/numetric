@@ -52,13 +52,16 @@
 			};
 		},
 		'marker': function(data) {
+			var source = data._source;
 			return {
 				id: data._id,
 				coords: {
-					latitude: data._source.Lat,
-					longitude: data._source.Long
+					latitude: source.Lat,
+					longitude:source.Long
 				},
-				raw: data
+				icon: '/img/icon_signs.png',
+				showWindow: false,
+				raw: source
 			};
 		}
 
@@ -74,10 +77,8 @@
 		var service = {};
 
 		var es = esFactory({
-			host: 'udot.teratek.co:9200',
-			log: 'trace'
+			host: 'udot.teratek.co:9200'
 		});
-
 
 		service.getSigns = function() {
 			var deferred = $q.defer();
