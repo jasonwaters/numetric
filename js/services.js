@@ -56,15 +56,31 @@
 			return {
 				id: data._id,
 				coords: {
-					latitude: source.Lat,
-					longitude:source.Long
+					latitude: source.GeoLocation[1],
+					longitude:source.GeoLocation[0]
 				},
 				icon: '/img/icon_signs.png',
-				showWindow: false,
 				raw: source
 			};
+		},
+		'barrier': function(data) {
+			var source = data._source;
+			return {
+				id: data._id,
+				path: [{
+					latitude: parseFloat(source.StartLocation[1]),
+					longitude: parseFloat(source.StartLocation[0])
+				},{
+					latitude: parseFloat(source.EndLocation[1]),
+					longitude: parseFloat(source.EndLocation[0])
+				}],
+				stroke: {
+					color: '#FFA500',
+					weight: 10,
+					opacity: 1
+				}
+			};
 		}
-
 	};
 
 	function getRandomInt(min, max) {
@@ -74,27 +90,84 @@
 	var app = angular.module('numetric.services', ['elasticsearch']);
 
 	app.factory('search-service', function (esFactory, $q) {
-		var service = {};
+		var service = {},
+			MAX_RECORDS=100;
 
 		var es = esFactory({
 			host: 'udot.teratek.co:9200'
 		});
 
-		service.getSigns = function() {
-			var deferred = $q.defer();
-
-			es.search({
-				index: 'udot',
-				size: 100,
-				body: {
+		service.getBarriers = function(bounds) {
+			var deferred = $q.defer(),
+				searchMap = {
 					"query":
 					{
 						"match": {
-							_type:"sign"
+							_type:"barrier_data"
 						}
 					},
-					"filter": {}
-				}
+					//"filter": {
+					//	"geo_bounding_box" : {
+					//		"source.GeoLocation" : {
+					//			"top_right" : {
+					//				"lat" : bounds.northeast.latitude,
+					//				"lon" : bounds.northeast.longitude
+					//			},
+					//			"bottom_left": {
+					//				"lat" : bounds.southwest.latitude,
+					//				"lon" : bounds.southwest.longitude
+					//			}
+					//		}
+					//	}
+					//}
+				};
+
+			es.search({
+				index: 'udot',
+				size: MAX_RECORDS,
+				body: searchMap
+			}).then(function (response) {
+				var barriers = [];
+
+				_.forEach(response.hits.hits, function(hit) {
+					barriers.push(Generate.barrier(hit));
+				});
+
+				deferred.resolve(barriers);
+			});
+
+			return deferred.promise;
+		};
+
+		service.getSigns = function(bounds) {
+			var deferred = $q.defer(),
+				searchMap = {
+					"query":
+					{
+						"match": {
+							_type:"sign_data"
+						}
+					},
+					//"filter": {
+					//	"geo_bounding_box" : {
+					//		"source.GeoLocation" : {
+					//			"top_right" : {
+					//				"lat" : bounds.northeast.latitude,
+					//				"lon" : bounds.northeast.longitude
+					//			},
+					//			"bottom_left": {
+					//				"lat" : bounds.southwest.latitude,
+					//				"lon" : bounds.southwest.longitude
+					//			}
+					//		}
+					//	}
+					//}
+				};
+
+			es.search({
+				index: 'udot',
+				size: MAX_RECORDS,
+				body: searchMap
 			}).then(function (response) {
 				var signs = [];
 

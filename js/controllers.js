@@ -46,7 +46,6 @@
 				panControl: false,
 				streetViewControl: false,
 				zoomControl: false
-				//styles: mapStyle
 			}
 		};
 
@@ -203,48 +202,81 @@
 		}
 	}]);
 
-	app.controller('numetric-map', ['$scope', 'GoogleMapApi'.ns(), 'search-service', function($scope, GoogleMapApi, searchService) {
+	app.controller('numetric-map', ['$scope', '$timeout', 'GoogleMapApi'.ns(), 'search-service', function($scope, $timeout, GoogleMapApi, searchService) {
 		$scope.showBarriers = true;
 		$scope.showSigns = true;
-		$scope.showMileposts = true;
+		$scope.showMileposts = false;
+
+		$scope.barriers = [];
+		$scope.signs = [];
+		$scope.mileposts = [];
 
 		$scope.map = {
 			center: {
 				latitude: 39.63094,
 				longitude: -110.82715
 			},
-			zoom: 11,
+			zoom: 8,
+			bounds: {},
 			options: {
 				panControl: false,
 				streetViewControl: false,
-				zoomControl: false
-				//styles: mapStyle
+				zoomControl: true
 			}
 		};
+
+		function fetchBarriers() {
+			searchService.getBarriers($scope.map.bounds).then(function(response) {
+				$scope.barriers = response;
+			});
+		}
+
+		function fetchSigns() {
+			searchService.getSigns($scope.map.bounds).then(function(response) {
+				$scope.signs = response;
+			});
+		}
+
+		function fetchData() {
+			fetchSigns();
+			fetchBarriers();
+		}
+
+		$scope.$watch('showBarriers', function(newValue, oldValue) {
+			if(newValue) {
+				fetchBarriers();
+			}else {
+				$scope.barriers = [];
+			}
+		});
+
+		$scope.$watch('showSigns', function(newValue, oldValue) {
+			if(newValue) {
+				fetchSigns();
+			}else {
+				$scope.signs = [];
+			}
+		});
+
+		//watch map.bounds, fetch new data when bounds changes.
+		//$scope.$watch(function() {return $scope.map.bounds;}, _.debounce(function(newValue, oldValue) {
+		//	$scope.$apply(function() {
+		//		if(newValue.hasOwnProperty('northeast')) {
+		//			fetchData();
+		//		}
+		//	});
+		//}, 1000), true);
 
 		GoogleMapApi.then(function(maps) {
 			$scope.map.options.mapTypeId = maps.MapTypeId.HYBRID;
 		});
 
 
-		$scope.signs = [];
 		$scope.signOptions = {};
 		$scope.signEvents = {
 			clicked: function(marker, eventName, model, args) {
 			}
 		};
-
-		_.each($scope.signs, function(marker) {
-			marker.closeClick = function () {
-				marker.showWindow = false;
-				$scope.$apply();
-			};
-		});
-
-		searchService.getSigns().then(function(response) {
-			$scope.signs = response;
-		});
-
 	}]);
 
 })();
