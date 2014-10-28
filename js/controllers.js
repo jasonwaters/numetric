@@ -202,7 +202,8 @@
 		}
 	}]);
 
-	app.controller('numetric-map', ['$scope', '$timeout', 'GoogleMapApi'.ns(), 'search-service', function($scope, $timeout, GoogleMapApi, searchService) {
+	app.controller('numetric-map', ['$scope', '$timeout', 'GoogleMapApi'.ns(), 'Logger'.ns(), 'search-service', function($scope, $timeout, GoogleMapApi, Logger, searchService) {
+		//Logger.doLog = true;
 		$scope.showBarriers = true;
 		$scope.showSigns = true;
 		$scope.showMileposts = false;
@@ -213,10 +214,10 @@
 
 		$scope.map = {
 			center: {
-				latitude: 39.63094,
-				longitude: -110.82715
+				latitude: 40.6357,
+				longitude: -111.9047
 			},
-			zoom: 8,
+			zoom: 16,
 			bounds: {},
 			options: {
 				panControl: false,
@@ -225,17 +226,24 @@
 			}
 		};
 
-		function fetchBarriers() {
+		var fetchBarriers = _.debounce(function() {
+			if(!$scope.map.bounds.hasOwnProperty('northeast')) {
+				return;
+			}
+
 			searchService.getBarriers($scope.map.bounds).then(function(response) {
 				$scope.barriers = response;
 			});
-		}
+		}, 1000);
 
-		function fetchSigns() {
+		var fetchSigns = _.debounce(function() {
+			if(!$scope.map.bounds.hasOwnProperty('northeast')) {
+				return;
+			}
 			searchService.getSigns($scope.map.bounds).then(function(response) {
 				$scope.signs = response;
 			});
-		}
+		}, 1000);
 
 		function fetchData() {
 			fetchSigns();
@@ -259,13 +267,9 @@
 		});
 
 		//watch map.bounds, fetch new data when bounds changes.
-		//$scope.$watch(function() {return $scope.map.bounds;}, _.debounce(function(newValue, oldValue) {
-		//	$scope.$apply(function() {
-		//		if(newValue.hasOwnProperty('northeast')) {
-		//			fetchData();
-		//		}
-		//	});
-		//}, 1000), true);
+		$scope.$watch(function() {return $scope.map.bounds;}, function(newValue, oldValue) {
+			fetchData();
+		}, true);
 
 		GoogleMapApi.then(function(maps) {
 			$scope.map.options.mapTypeId = maps.MapTypeId.HYBRID;

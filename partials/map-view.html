@@ -19,8 +19,9 @@
 				<div class="inner-inner">
 					<div class="map">
 						<ui-gmap-google-map center="map.center" zoom="map.zoom" options="map.options" bounds="map.bounds">
+							<!--NOT SURE WHY THIS DOESN'T WORK-->
 							<!--<ui-gmap-polylines models="barriers" path="'path'" stroke="'stroke'" visible="true"-->
-											   <!--geodesic="false" fit="true" editable="false" draggable="false" static="true">-->
+											   <!--geodesic="false" fit="false" editable="false" draggable="false" static="true">-->
 							<!--</ui-gmap-polylines>-->
 
 							<ui-gmap-polyline ng-repeat="p in barriers" path="p.path" stroke="p.stroke" visible='true' geodesic='false' fit="false" editable="false" draggable="false"></ui-gmap-polyline>

@@ -56,8 +56,8 @@
 			return {
 				id: data._id,
 				coords: {
-					latitude: source.GeoLocation[1],
-					longitude:source.GeoLocation[0]
+					latitude: source.GeoPointLocation.lat,
+					longitude:source.GeoPointLocation.lon
 				},
 				icon: '/img/icon_signs.png',
 				raw: source
@@ -68,15 +68,15 @@
 			return {
 				id: data._id,
 				path: [{
-					latitude: parseFloat(source.StartLocation[1]),
-					longitude: parseFloat(source.StartLocation[0])
+					latitude: parseFloat(source.GeoPointStartLocation.lat),
+					longitude: parseFloat(source.GeoPointStartLocation.lon)
 				},{
-					latitude: parseFloat(source.EndLocation[1]),
-					longitude: parseFloat(source.EndLocation[0])
+					latitude: parseFloat(source.GeoPointEndLocation.lat),
+					longitude: parseFloat(source.GeoPointEndLocation.lon)
 				}],
 				stroke: {
 					color: '#FFA500',
-					weight: 10,
+					weight: 2,
 					opacity: 1
 				}
 			};
@@ -106,20 +106,30 @@
 							_type:"barrier_data"
 						}
 					},
-					//"filter": {
-					//	"geo_bounding_box" : {
-					//		"source.GeoLocation" : {
-					//			"top_right" : {
-					//				"lat" : bounds.northeast.latitude,
-					//				"lon" : bounds.northeast.longitude
-					//			},
-					//			"bottom_left": {
-					//				"lat" : bounds.southwest.latitude,
-					//				"lon" : bounds.southwest.longitude
-					//			}
-					//		}
-					//	}
-					//}
+					"filter": {
+						"geo_bounding_box" : {
+							"GeoPointStartLocation" : {
+								"top_right" : {
+									"lat" : bounds.northeast.latitude,
+									"lon" : bounds.northeast.longitude
+								},
+								"bottom_left": {
+									"lat" : bounds.southwest.latitude,
+									"lon" : bounds.southwest.longitude
+								}
+							},
+							"GeoPointEndLocation" : {
+								"top_right" : {
+									"lat" : bounds.northeast.latitude,
+									"lon" : bounds.northeast.longitude
+								},
+								"bottom_left": {
+									"lat" : bounds.southwest.latitude,
+									"lon" : bounds.southwest.longitude
+								}
+							}
+						}
+					}
 				};
 
 			es.search({
@@ -148,20 +158,20 @@
 							_type:"sign_data"
 						}
 					},
-					//"filter": {
-					//	"geo_bounding_box" : {
-					//		"source.GeoLocation" : {
-					//			"top_right" : {
-					//				"lat" : bounds.northeast.latitude,
-					//				"lon" : bounds.northeast.longitude
-					//			},
-					//			"bottom_left": {
-					//				"lat" : bounds.southwest.latitude,
-					//				"lon" : bounds.southwest.longitude
-					//			}
-					//		}
-					//	}
-					//}
+					"filter": {
+						"geo_bounding_box" : {
+							"GeoPointLocation" : {
+								"top_right" : {
+									"lat" : bounds.northeast.latitude,
+									"lon" : bounds.northeast.longitude
+								},
+								"bottom_left": {
+									"lat" : bounds.southwest.latitude,
+									"lon" : bounds.southwest.longitude
+								}
+							}
+						}
+					}
 				};
 
 			es.search({
