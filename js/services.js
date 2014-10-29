@@ -97,13 +97,19 @@
 			host: 'udot.teratek.co:9200'
 		});
 
-		service.getBarriers = function(bounds) {
+		service.getBarriers = function(bounds, filterText) {
 			var deferred = $q.defer(),
 				searchMap = {
 					"query":
 					{
-						"match": {
-							_type:"barrier_data"
+						"bool":{
+							"must": [
+								{
+									"match": {
+										_type:"barrier_data"
+									}
+								}
+							]
 						}
 					},
 					"filter": {
@@ -132,6 +138,16 @@
 					}
 				};
 
+			if(filterText.length > 0) {
+				searchMap.query.bool.must.push({
+					"multi_match": {
+						"query":    filterText,
+						"fields": [ "BarrierType", "Region", "Side_of_Road", "Station", "UDOTClass", "RouteName"],
+						"type": 'most_fields'
+					}
+				});
+			}
+
 			es.search({
 				index: 'udot',
 				size: MAX_RECORDS,
@@ -149,13 +165,17 @@
 			return deferred.promise;
 		};
 
-		service.getSigns = function(bounds) {
+		service.getSigns = function(bounds, filterText) {
 			var deferred = $q.defer(),
 				searchMap = {
 					"query":
 					{
-						"match": {
-							_type:"sign_data"
+						"bool": {
+							"must": [{
+								"match": {
+									'_type':"sign_data"
+								}
+							}]
 						}
 					},
 					"filter": {
@@ -173,6 +193,16 @@
 						}
 					}
 				};
+
+			if(filterText.length > 0) {
+				searchMap.query.bool.must.push({
+					"multi_match": {
+						"query":    filterText,
+						"fields": [ "SignOrientation", "Legend", "Station", "Condition", "Region", "Side" ],
+						"type": 'most_fields'
+					}
+				});
+			}
 
 			es.search({
 				index: 'udot',

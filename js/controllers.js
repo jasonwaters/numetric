@@ -211,6 +211,7 @@
 		$scope.barriers = [];
 		$scope.signs = [];
 		$scope.mileposts = [];
+		$scope.filterText = '';
 
 		$scope.map = {
 			center: {
@@ -227,20 +228,20 @@
 		};
 
 		var fetchBarriers = _.debounce(function() {
-			if(!$scope.map.bounds.hasOwnProperty('northeast')) {
+			if(!$scope.showBarriers || !$scope.map.bounds.hasOwnProperty('northeast')) {
 				return;
 			}
 
-			searchService.getBarriers($scope.map.bounds).then(function(response) {
+			searchService.getBarriers($scope.map.bounds, $scope.filterText).then(function(response) {
 				$scope.barriers = response;
 			});
 		}, 1000);
 
 		var fetchSigns = _.debounce(function() {
-			if(!$scope.map.bounds.hasOwnProperty('northeast')) {
+			if(!$scope.showSigns || !$scope.map.bounds.hasOwnProperty('northeast')) {
 				return;
 			}
-			searchService.getSigns($scope.map.bounds).then(function(response) {
+			searchService.getSigns($scope.map.bounds, $scope.filterText).then(function(response) {
 				$scope.signs = response;
 			});
 		}, 1000);
@@ -250,29 +251,34 @@
 			fetchBarriers();
 		}
 
-		$scope.$watch('showBarriers', function(newValue, oldValue) {
-			if(newValue) {
-				fetchBarriers();
-			}else {
-				$scope.barriers = [];
-			}
-		});
-
-		$scope.$watch('showSigns', function(newValue, oldValue) {
-			if(newValue) {
-				fetchSigns();
-			}else {
-				$scope.signs = [];
-			}
-		});
-
-		//watch map.bounds, fetch new data when bounds changes.
-		$scope.$watch(function() {return $scope.map.bounds;}, function(newValue, oldValue) {
-			fetchData();
-		}, true);
-
 		GoogleMapApi.then(function(maps) {
 			$scope.map.options.mapTypeId = maps.MapTypeId.HYBRID;
+
+			$scope.$watch('showBarriers', function(newValue, oldValue) {
+				if(newValue) {
+					fetchBarriers();
+				}else {
+					$scope.barriers = [];
+				}
+			});
+
+			$scope.$watch('showSigns', function(newValue, oldValue) {
+				if(newValue) {
+					fetchSigns();
+				}else {
+					$scope.signs = [];
+				}
+			});
+
+			$scope.$watch('filterText', _.debounce(function(newValue, oldValue) {
+				fetchData();
+			}, 1000));
+
+			//watch map.bounds, fetch new data when bounds changes.
+			$scope.$watch(function() {return $scope.map.bounds;}, function(newValue, oldValue) {
+				fetchData();
+			}, true);
+
 		});
 
 
