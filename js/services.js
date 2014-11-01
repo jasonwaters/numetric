@@ -198,7 +198,7 @@
 				searchMap.query.bool.must.push({
 					"multi_match": {
 						"query":    filterText,
-						"fields": [ "SignOrientation", "Legend", "Station", "Condition", "Region", "Side" ],
+						"fields": [ "SignOrientation", "Legend", "Station", "Condition", "Region", "Side", "MUTCD", "MUTCDFull" ],
 						"type": 'most_fields'
 					}
 				});
