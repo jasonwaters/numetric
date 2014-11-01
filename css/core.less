@@ -249,12 +249,13 @@ a:focus {
 }
 
 .map-view {
+	@map-height: 814px;
 	.map {
-		min-height: 800px;
-		max-height: 800px;
+		min-height: @map-height;
+		max-height: @map-height;
 	}
 
-	.angular-google-map-container { height: 800px; }
+	.angular-google-map-container { height: @map-height; }
 
 	.sign-info-popup {
 		li {

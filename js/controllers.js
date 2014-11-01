@@ -222,7 +222,7 @@
 			bounds: {},
 			options: {
 				panControl: false,
-				streetViewControl: false,
+				streetViewControl: true,
 				zoomControl: true
 			}
 		};
